@@ -1,6 +1,6 @@
 /* ---------- admin ---------- */
 function adminShell(inner){
- const items=[['dashboard','Dashboard'],['calendar','Calendar'],['reservations','Reservations'],['courts','Courts'],['smslog','SMS log']];
+ const items=[['dashboard','Dashboard'],['calendar','Calendar'],['reservations','Reservations'],['courts','Courts'],['openplay','Open Play'],['smslog','SMS log']];
  return `<div class="adm"><nav class="side" aria-label="Admin">${items.map(([k,l])=>`<button data-a="adm" data-v="${k}" ${S.adminView===k?'aria-current="page"':''}>${l}${k==='reservations'?` (${S.bookings.filter(b=>b.status==='pending').length})`:''}</button>`).join('')}</nav><main class="main stack" style="--s:24px">${inner}</main></div>`;
 }
 function admDash(){

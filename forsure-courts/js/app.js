@@ -1,6 +1,6 @@
 /* ---------- render ---------- */
-const PAGES={home:pgHome,courts:pgCourts,detail:pgDetail,book:pgBook,confirm:pgConfirm,mybookings:pgMy,sms:pgSms,info:pgInfo};
-const ADM={dashboard:admDash,calendar:admCal,reservations:admRes,courts:admCourts,smslog:admSms};
+const PAGES={home:pgHome,courts:pgCourts,detail:pgDetail,book:pgBook,confirm:pgConfirm,mybookings:pgMy,sms:pgSms,info:pgInfo,openplay:pgOpenPlay};
+const ADM={dashboard:admDash,calendar:admCal,reservations:admRes,courts:admCourts,smslog:admSms,openplay:admOpenPlay};
 function render(scroll){
  const adm=S.role==='admin';
  $('#app').innerHTML=header()+(adm?adminShell(ADM[S.adminView]()):`<main>${PAGES[S.view]()}</main>${footer()}`)+modal();
@@ -43,6 +43,10 @@ document.addEventListener('click',e=>{
   case 'complete':setStatus(v,'completed');break;
   case 'remind':{const b=S.bookings.find(x=>x.ref===v);sendSms('reminder',b);S.modal=null;toast('Reminder added to the SMS log (simulated).');render(false);break}
   case 'toggle':{const c=court(+v);c.open=!c.open;render(false);break}
+  case 'opcreate':opCreate();break;
+  case 'opbook':opBook(v);break;
+  case 'opcancelbooking':opCancelBooking(v,t.dataset.p);break;
+  case 'opcancel':opCancelSession(v);break;
  }
 });
 document.addEventListener('input',e=>{

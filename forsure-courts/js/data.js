@@ -28,8 +28,11 @@ const S={
   mk('PBR-013',2,1,17,2,'Paolo Reyes','confirmed'),
   mk('PBR-014',3,2,7,2,'Dan Villar','confirmed')
  ],
- sms:[]
+ sms:[],
+ openPlays:[]
 };
+// Restore Open Play sessions created in this browser.
+try{S.openPlays=JSON.parse(localStorage.getItem('forsure_openplay_v1')||'[]')}catch{S.openPlays=[]}
 const court=id=>S.courts.find(c=>c.id===id);
 const total=b=>court(b.courtId).price*b.dur+(b.paddle?ADDON.paddle.price:0)+(b.balls?ADDON.balls.price:0);
 const isPast=(date,h)=>date<TODAY||(date===TODAY&&h<=NOWH);

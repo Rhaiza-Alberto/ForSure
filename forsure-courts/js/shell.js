@@ -1,5 +1,5 @@
 /* ---------- customer shell ---------- */
-const NAV=[['home','Home'],['courts','Courts'],['mybookings','My bookings'],['sms','SMS preview'],['info','Info']];
+const NAV=[['home','Home'],['courts','Courts'],['mybookings','My bookings'],['openplay','Open Play'],['info','Info']];
 function header(){
  const adm=S.role==='admin';
  return `<header class="hdr"><div class="wrap">
